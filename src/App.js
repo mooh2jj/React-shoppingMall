@@ -17,6 +17,8 @@ function App() {
 
   let posts = "강남 고기 맛집";
 
+  const [modal, setModal] = useState(false)
+
   function f1(){
     return 100;
   }
@@ -76,11 +78,23 @@ function App() {
           <h4>2021.03 발행</h4>
           <hr/>
         </div>
-        <div>
-          {renderHouse}
-        </div>
+        <button onClick={() => { setModal(!modal)}}>open</button>
+        {
+          modal === true ? <Modal /> : null
+        }
+        
     </div>
   );
+}
+
+function Modal(){
+  return (
+    <div className="modal">
+      <h2>제목</h2>
+      <p>날짜</p>
+      <p>상세내용</p>
+    </div>
+  )
 }
 
 export default App;
