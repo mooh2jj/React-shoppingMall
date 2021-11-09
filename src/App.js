@@ -63,34 +63,31 @@ function App() {
           <button onClick={btnF}>버튼</button>
           <div style={{ color:'blue', fontSize : '30px' }}>개발 Blog</div>
         </div>
-        <div className="list">
-          <h4>{ 글제목[0] } <span onClick={ ()=>{ 따봉변경(따봉++)}}>😢</span> {따봉} </h4>  
-          <h4>2021.01 발행</h4>
-          <hr/>
-        </div>
-        <div className="list">
-          <h4>{ 글제목[1] }</h4>
-          <h4>2021.02 발행</h4>
-          <hr/>
-        </div>
-        <div className="list">
-          <h4>{ 글제목[2] }</h4>
-          <h4>2021.03 발행</h4>
-          <hr/>
-        </div>
+        {
+          글제목.map((name, index)=> {
+            return(
+            <div>
+              <h3>{ 글제목[index] } <span onClick={ () => { 따봉변경(따봉 + 1)}}>👍</span> {따봉}</h3>
+              <p>2월 18일 발행</p>
+              <hr />
+            </div>
+            )
+          })
+        }
         <button onClick={() => { setModal(!modal)}}>open</button>
         {
-          modal === true ? <Modal /> : null
+          modal === true 
+          ? <Modal 글제목={글제목}></Modal> : null
         }
         
     </div>
   );
 }
 
-function Modal(){
+function Modal(props){
   return (
     <div className="modal">
-      <h2>제목</h2>
+      <h3>제목 { props.글제목[0]}</h3>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
