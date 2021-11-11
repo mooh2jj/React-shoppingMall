@@ -11,11 +11,13 @@ function App() {
   // 왜 굳이 state 데이터를 쓰느가?
   // state는 변경되면 HTML이 자동으로 재런더링되기 때문
   // 그냥 변수면 새로고침해야 됨!
-
+  
   let [따봉, 따봉변경] = useState(0);
   // state 변경함수로 변경해야 재랜더링이 된다!
-
+  
   let posts = "강남 고기 맛집";
+
+  let [inputVal, setInput] = useState('');
 
   const [modal, setModal] = useState(false)
 
@@ -47,7 +49,6 @@ function App() {
     )
   })
 
-  let [글자, 글자변경] = useState();
 
   function btnF(){
     // var newChar = 글제목 // 권장사항 아님! 복사가 x 값 공유임! 복사본 만들어서 수정
@@ -66,7 +67,7 @@ function App() {
         {
           글제목.map((name, index)=> {
             return(
-            <div>
+            <div className="list" key={index}>
               <h3>{ 글제목[index] } <span onClick={ () => { 따봉변경(따봉 + 1)}}>👍</span> {따봉}</h3>
               <p>2월 18일 발행</p>
               <hr />
@@ -74,6 +75,12 @@ function App() {
             )
           })
         }
+
+        <input onChange={ (e) => { setInput(e.target.value) }} />
+        { inputVal }
+        <br />
+        <br />
+
         <button onClick={() => { setModal(!modal)}}>open</button>
         {
           modal === true 
